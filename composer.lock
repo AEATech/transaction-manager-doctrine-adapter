@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51b9416ca0a8d472c63785db7986d194",
+    "content-hash": "abcd4d9ece8554daaebd61a4c1b3cc54",
     "packages": [
         {
             "name": "aeatech/transaction-manager-core",
-            "version": "0.0.5",
+            "version": "0.0.6",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Shahelm/transaction-manager-core.git",
-                "reference": "f2d2f2b7831431fae7c660095f069079acded4e6"
+                "reference": "a974401ea39492ebfb4a0f21b0e7c443c3db09f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/f2d2f2b7831431fae7c660095f069079acded4e6",
-                "reference": "f2d2f2b7831431fae7c660095f069079acded4e6",
+                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/a974401ea39492ebfb4a0f21b0e7c443c3db09f6",
+                "reference": "a974401ea39492ebfb4a0f21b0e7c443c3db09f6",
                 "shasum": ""
             },
             "require": {
@@ -51,10 +51,10 @@
             ],
             "description": "Transaction manager core",
             "support": {
-                "source": "https://github.com/Shahelm/transaction-manager-core/tree/0.0.5",
+                "source": "https://github.com/Shahelm/transaction-manager-core/tree/0.0.6",
                 "issues": "https://github.com/Shahelm/transaction-manager-core/issues"
             },
-            "time": "2025-11-29T13:50:10+00:00"
+            "time": "2025-12-05T15:40:00+00:00"
         },
         {
             "name": "doctrine/dbal",
