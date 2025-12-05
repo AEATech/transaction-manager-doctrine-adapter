@@ -7,6 +7,7 @@ use AEATech\TransactionManager\ConnectionInterface;
 use AEATech\TransactionManager\IsolationLevel;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\TransactionIsolationLevel;
+use LogicException;
 
 class DbalConnectionAdapter implements ConnectionInterface
 {
@@ -17,6 +18,10 @@ class DbalConnectionAdapter implements ConnectionInterface
 
     public function beginTransaction(): void
     {
+        if ($this->connection->isTransactionActive()) {
+            throw new LogicException('Cannot begin a transaction when one is already active.');
+        }
+
         $this->connection->beginTransaction();
     }
 

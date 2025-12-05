@@ -7,6 +7,7 @@ use AEATech\TransactionManager\DoctrineAdapter\DbalConnectionAdapter;
 use AEATech\TransactionManager\IsolationLevel;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\TransactionIsolationLevel;
+use LogicException;
 use Mockery as m;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -35,7 +36,25 @@ class DbalConnectionAdapterTest extends TestCase
     #[Test]
     public function beginTransaction(): void
     {
+        $this->connection->shouldReceive('isTransactionActive')->andReturn(false);
+
         $this->connection->shouldReceive('beginTransaction')->once();
+
+        $this->connectionAdapter->beginTransaction();
+    }
+
+    /**
+     * @throws Throwable
+     */
+    #[Test]
+    public function beginTransactionWhenTransactionIsActive(): void
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Cannot begin a transaction when one is already active.');
+
+        $this->connection->shouldReceive('isTransactionActive')->andReturn(true);
+
+        $this->connection->shouldNotReceive('beginTransaction');
 
         $this->connectionAdapter->beginTransaction();
     }
