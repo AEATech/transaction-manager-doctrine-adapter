@@ -4,23 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abcd4d9ece8554daaebd61a4c1b3cc54",
+    "content-hash": "37f93275e6654e52444c7513c2a5b179",
     "packages": [
         {
             "name": "aeatech/transaction-manager-core",
-            "version": "0.0.6",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Shahelm/transaction-manager-core.git",
-                "reference": "a974401ea39492ebfb4a0f21b0e7c443c3db09f6"
+                "reference": "d1157f1b4762ca241ca6205b09e4432c9a70c0ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/a974401ea39492ebfb4a0f21b0e7c443c3db09f6",
-                "reference": "a974401ea39492ebfb4a0f21b0e7c443c3db09f6",
+                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/d1157f1b4762ca241ca6205b09e4432c9a70c0ed",
+                "reference": "d1157f1b4762ca241ca6205b09e4432c9a70c0ed",
                 "shasum": ""
             },
             "require": {
+                "ext-pdo": "*",
                 "php": ">=8.2"
             },
             "require-dev": {
@@ -51,10 +52,10 @@
             ],
             "description": "Transaction manager core",
             "support": {
-                "source": "https://github.com/Shahelm/transaction-manager-core/tree/0.0.6",
+                "source": "https://github.com/Shahelm/transaction-manager-core/tree/0.1.0",
                 "issues": "https://github.com/Shahelm/transaction-manager-core/issues"
             },
-            "time": "2025-12-05T15:40:00+00:00"
+            "time": "2025-12-06T21:48:58+00:00"
         },
         {
             "name": "doctrine/dbal",
