@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "37f93275e6654e52444c7513c2a5b179",
+    "content-hash": "7407dffe2d92d8a7a373090cc3beff64",
     "packages": [
         {
             "name": "aeatech/transaction-manager-core",
-            "version": "0.1.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Shahelm/transaction-manager-core.git",
-                "reference": "d1157f1b4762ca241ca6205b09e4432c9a70c0ed"
+                "reference": "bcfb17a7909b523890ad146678be01b278b01679"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/d1157f1b4762ca241ca6205b09e4432c9a70c0ed",
-                "reference": "d1157f1b4762ca241ca6205b09e4432c9a70c0ed",
+                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/bcfb17a7909b523890ad146678be01b278b01679",
+                "reference": "bcfb17a7909b523890ad146678be01b278b01679",
                 "shasum": ""
             },
             "require": {
@@ -29,6 +29,7 @@
                 "phpunit/phpunit": "^11.5",
                 "roave/security-advisories": "dev-master"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -51,11 +52,17 @@
                 "MIT"
             ],
             "description": "Transaction manager core",
+            "keywords": [
+                "database",
+                "sql",
+                "transaction",
+                "transaction-manager"
+            ],
             "support": {
-                "source": "https://github.com/Shahelm/transaction-manager-core/tree/0.1.0",
+                "source": "https://github.com/Shahelm/transaction-manager-core/tree/main",
                 "issues": "https://github.com/Shahelm/transaction-manager-core/issues"
             },
-            "time": "2025-12-06T21:48:58+00:00"
+            "time": "2025-12-07T14:31:53+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -3213,6 +3220,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "aeatech/transaction-manager-core": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
