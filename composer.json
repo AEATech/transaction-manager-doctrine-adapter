@@ -1,41 +1,48 @@
 {
-  "name": "aeatech/transaction-manager-doctrine-adapter",
-  "description": "Implementation of the transaction manager connection with Doctrine",
-  "license": "MIT",
-  "config": {
-    "sort-packages": true
-  },
+    "name": "aeatech/transaction-manager-doctrine-adapter",
+    "description": "Implementation of the transaction manager connection with Doctrine",
+    "license": "MIT",
+    "type": "library",
+    "config": {
+        "sort-packages": true
+    },
     "repositories": [
         {
             "type": "vcs",
             "url": "git@github.com:Shahelm/transaction-manager-core.git"
         }
     ],
-  "require": {
-    "php": ">=8.2",
-    "aeatech/transaction-manager-core": "^0.1.0",
-    "doctrine/dbal": "^3.7 || ^4.0"
-  },
-  "require-dev": {
-    "mockery/mockery": "^1.6.10",
-    "phpunit/phpunit": "^11.5",
-    "roave/security-advisories": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "AEATech\\TransactionManager\\DoctrineAdapter\\": "src/AEATech/TransactionManager/DoctrineAdapter"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-       "AEATech\\Test\\TransactionManager\\DoctrineAdapter\\": "tests/AEATech/Test/TransactionManager/DoctrineAdapter"
-    }
-  },
-  "archive": {
-    "exclude": [
-      "/docker",
-      "/tests",
-      "/phpunit.xml"
+    "require": {
+        "php": ">=8.2",
+        "aeatech/transaction-manager-core": "^0.1.0",
+        "doctrine/dbal": "^3.7 || ^4.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6.10",
+        "phpunit/phpunit": "^11.5",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "AEATech\\TransactionManager\\DoctrineAdapter\\": "src/AEATech/TransactionManager/DoctrineAdapter"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AEATech\\Test\\TransactionManager\\DoctrineAdapter\\": "tests/AEATech/Test/TransactionManager/DoctrineAdapter"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/docker",
+            "/tests",
+            "/phpunit.xml"
+        ]
+    },
+    "keywords": [
+        "doctrine-dbal",
+        "database",
+        "transaction",
+        "sql"
     ]
-  }
 }
