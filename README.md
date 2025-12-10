@@ -4,16 +4,16 @@ An adapter that implements `AEATech\TransactionManager\ConnectionInterface` on t
 
 ## Overview
 
-This package exposes a single class:
+This package exposes two classes:
 
-- `AEATech\TransactionManager\DoctrineAdapter\DbalConnectionAdapter`
+- `AEATech\TransactionManager\DoctrineAdapter\DbalMysqlConnectionAdapter`
+- `AEATech\TransactionManager\DoctrineAdapter\DbalPostgresConnectionAdapter`
 
-It wraps a `Doctrine\DBAL\Connection` and forwards transaction calls. Isolation levels from the core (`AEATech\TransactionManager\IsolationLevel`) are mapped to Doctrine’s `TransactionIsolationLevel`.
+It wraps a `Doctrine\DBAL\Connection` and forwards transaction calls. 
 
 Main responsibilities:
 - Start, commit, and roll back transactions
 - Set transaction isolation level
-- Execute DML statements via `executeStatement()` passthrough
 
 ## Installation
 
@@ -28,7 +28,7 @@ composer require aeatech/transaction-manager-doctrine-adapter
 Create a Doctrine DBAL connection (`Doctrine\DBAL\Connection`) and wrap it with the adapter:
 
 ```php
-use AEATech\TransactionManager\DoctrineAdapter\DbalConnectionAdapter;
+use AEATech\TransactionManager\DoctrineAdapter\DbalMysqlConnectionAdapter;
 use AEATech\TransactionManager\IsolationLevel;
 use Doctrine\DBAL\DriverManager;
 
@@ -40,7 +40,7 @@ $connection = DriverManager::getConnection([
     'password' => 'secret',
 ]);
 
-$conn = new DbalConnectionAdapter($connection);
+$conn = new DbalMysqlConnectionAdapter($connection);
 
 $conn->beginTransaction();
 try {
