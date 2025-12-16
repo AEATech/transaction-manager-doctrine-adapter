@@ -3,19 +3,25 @@ declare(strict_types=1);
 
 namespace AEATech\Test\TransactionManager\DoctrineAdapter;
 
-use AEATech\TransactionManager\DoctrineAdapter\AbstractConnectionAdapter;
-use AEATech\TransactionManager\DoctrineAdapter\DbalPostgresConnectionAdapter;
+use AEATech\TransactionManager\DoctrineAdapter\AbstractStatementCachingConnectionAdapter;
+use AEATech\TransactionManager\DoctrineAdapter\DbalPostgresStatementCachingConnectionAdapter;
 use AEATech\TransactionManager\TxOptions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use Throwable;
 
-#[CoversClass(DbalPostgresConnectionAdapter::class)]
-class DbalPostgresConnectionAdapterTest extends ConnectionAdapterTestCase
+#[CoversClass(DbalPostgresStatementCachingConnectionAdapter::class)]
+class DbalPostgresStatementCachingConnectionAdapterTest extends StatementCachingConnectionAdapterTestCase
 {
-    protected function buildConnectionAdapter(): AbstractConnectionAdapter
+    protected function buildConnectionAdapter(): AbstractStatementCachingConnectionAdapter
     {
-        return new DbalPostgresConnectionAdapter($this->connection, $this->statementExecutor);
+        return new DbalPostgresStatementCachingConnectionAdapter(
+            $this->connection,
+            $this->statementExecutor,
+            $this->statementCacheKeyBuilder,
+            $this->perTransactionCache,
+            $this->perConnectionCache
+        );
     }
 
     /**
@@ -25,6 +31,8 @@ class DbalPostgresConnectionAdapterTest extends ConnectionAdapterTestCase
     public function beginTransactionWithOptions(): void
     {
         $this->connection->shouldReceive('isTransactionActive')->andReturn(false);
+
+        $this->perTransactionCache->shouldReceive('clear')->once();
 
         $opt = new TxOptions();
 
