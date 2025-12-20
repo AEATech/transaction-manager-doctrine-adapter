@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Shahelm/transaction-manager-core.git",
-                "reference": "fbe8444b57c9bbf3a584363f1179ad259afc814f"
+                "reference": "d2ad900feb9cf66a953688ae0a5205fe33546270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/fbe8444b57c9bbf3a584363f1179ad259afc814f",
-                "reference": "fbe8444b57c9bbf3a584363f1179ad259afc814f",
+                "url": "https://api.github.com/repos/Shahelm/transaction-manager-core/zipball/d2ad900feb9cf66a953688ae0a5205fe33546270",
+                "reference": "d2ad900feb9cf66a953688ae0a5205fe33546270",
                 "shasum": ""
             },
             "require": {
@@ -62,7 +62,7 @@
                 "source": "https://github.com/Shahelm/transaction-manager-core/tree/main",
                 "issues": "https://github.com/Shahelm/transaction-manager-core/issues"
             },
-            "time": "2025-12-20T12:30:06+00:00"
+            "time": "2025-12-20T15:46:31+00:00"
         },
         {
             "name": "doctrine/dbal",
