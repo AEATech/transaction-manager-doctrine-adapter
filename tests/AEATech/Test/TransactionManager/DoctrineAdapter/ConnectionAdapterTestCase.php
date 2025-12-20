@@ -5,6 +5,7 @@ namespace AEATech\Test\TransactionManager\DoctrineAdapter;
 
 use AEATech\TransactionManager\DoctrineAdapter\AbstractConnectionAdapter;
 use AEATech\TransactionManager\DoctrineAdapter\StatementExecutor\StatementExecutor;
+use AEATech\TransactionManager\IsolationLevel;
 use AEATech\TransactionManager\Query;
 use AEATech\TransactionManager\TxOptions;
 use Doctrine\DBAL\Connection;
@@ -134,5 +135,17 @@ abstract class ConnectionAdapterTestCase extends TestCase
         $this->connection->shouldReceive('close')->once();
 
         $this->connectionAdapter->close();
+    }
+
+    public static function isolationLevelDataProvider(): array
+    {
+        return [
+            [
+                'isolationLevel' => null,
+            ],
+            [
+                'isolationLevel' => IsolationLevel::ReadCommitted,
+            ]
+        ];
     }
 }

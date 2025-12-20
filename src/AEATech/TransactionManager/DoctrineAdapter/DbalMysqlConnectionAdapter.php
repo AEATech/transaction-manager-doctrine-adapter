@@ -14,11 +14,13 @@ class DbalMysqlConnectionAdapter extends AbstractConnectionAdapter
             throw new LogicException('Cannot begin a transaction when one is already active.');
         }
 
-        // MySQL/MariaDB: apply isolation to the NEXT transaction only (no session leakage)
-        // Allowed only when there is no active transaction.
-        $this->connection->executeStatement(
-            'SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value
-        );
+        if (null !== $opt->isolationLevel) {
+            // MySQL/MariaDB: apply isolation to the NEXT transaction only (no session leakage)
+            // Allowed only when there is no active transaction.
+            $this->connection->executeStatement(
+                'SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value
+            );
+        }
 
         $this->connection->beginTransaction();
     }

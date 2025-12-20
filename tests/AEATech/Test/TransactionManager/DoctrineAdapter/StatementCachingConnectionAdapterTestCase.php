@@ -7,6 +7,7 @@ use AEATech\TransactionManager\DoctrineAdapter\AbstractStatementCachingConnectio
 use AEATech\TransactionManager\DoctrineAdapter\StatementCache\StatementCacheInterface;
 use AEATech\TransactionManager\DoctrineAdapter\StatementCache\StatementCacheKeyBuilderInterface;
 use AEATech\TransactionManager\DoctrineAdapter\StatementExecutor\StatementExecutor;
+use AEATech\TransactionManager\IsolationLevel;
 use AEATech\TransactionManager\Query;
 use AEATech\TransactionManager\StatementReusePolicy;
 use AEATech\TransactionManager\TxOptions;
@@ -361,5 +362,17 @@ abstract class StatementCachingConnectionAdapterTestCase extends TestCase
         $this->perConnectionCache->shouldReceive('clear')->once();
 
         $this->connectionAdapter->close();
+    }
+
+    public static function isolationLevelDataProvider(): array
+    {
+        return [
+            [
+                'isolationLevel' => null,
+            ],
+            [
+                'isolationLevel' => IsolationLevel::ReadCommitted,
+            ]
+        ];
     }
 }

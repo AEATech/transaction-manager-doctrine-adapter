@@ -19,8 +19,11 @@ class DbalPostgresStatementCachingConnectionAdapter extends AbstractStatementCac
 
         // PostgreSQL: BEGIN and then set isolation for this transaction only
         $this->connection->beginTransaction();
-        $this->connection->executeStatement(
-            'SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value
-        );
+
+        if (null !== $opt->isolationLevel) {
+            $this->connection->executeStatement(
+                'SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value
+            );
+        }
     }
 }

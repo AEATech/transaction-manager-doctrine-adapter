@@ -126,21 +126,24 @@ Compatibility notes:
 
 ### MySQL/MariaDB
 
-`DbalMysqlStatementCachingConnectionAdapter::beginTransactionWithOptions()` sets the isolation level for the next transaction and then begins the transaction:
+`DbalMysqlStatementCachingConnectionAdapter::beginTransactionWithOptions()` sets the isolation level for the next transaction (if provided in `$options`) and then begins the transaction:
 
 ```php
-$adapter->beginTransactionWithOptions($options); // executes: SET TRANSACTION ISOLATION LEVEL ..., then BEGIN
+$adapter->beginTransactionWithOptions($options); 
+// executes: SET TRANSACTION ISOLATION LEVEL ... (only if isolationLevel is set), then BEGIN
 ```
 
 ### PostgreSQL
 
-`DbalPostgresStatementCachingConnectionAdapter::beginTransactionWithOptions()` begins a transaction first and then sets isolation for the current transaction only:
+`DbalPostgresStatementCachingConnectionAdapter::beginTransactionWithOptions()` begins a transaction first and then sets isolation for the current transaction only (if provided in `$options`):
 
 ```php
-$adapter->beginTransactionWithOptions($options); // executes: BEGIN; SET TRANSACTION ISOLATION LEVEL ...
+$adapter->beginTransactionWithOptions($options); 
+// executes: BEGIN; then SET TRANSACTION ISOLATION LEVEL ... (only if isolationLevel is set)
 ```
 
 Both adapters:
+- Support optional `isolationLevel`. If `null`, no isolation level command is issued, and the database/session default is used.
 - Throw if a transaction is already active.
 - Clear the per‑transaction cache on every transaction boundary (`begin` with options, `commit`, `rollBack`).
 

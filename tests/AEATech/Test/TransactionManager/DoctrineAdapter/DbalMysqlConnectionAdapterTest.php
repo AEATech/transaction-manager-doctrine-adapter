@@ -5,8 +5,10 @@ namespace AEATech\Test\TransactionManager\DoctrineAdapter;
 
 use AEATech\TransactionManager\DoctrineAdapter\AbstractConnectionAdapter;
 use AEATech\TransactionManager\DoctrineAdapter\DbalMysqlConnectionAdapter;
+use AEATech\TransactionManager\IsolationLevel;
 use AEATech\TransactionManager\TxOptions;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use Throwable;
 
@@ -22,16 +24,21 @@ class DbalMysqlConnectionAdapterTest extends ConnectionAdapterTestCase
      * @throws Throwable
      */
     #[Test]
-    public function beginTransactionWithOptions(): void
+    #[DataProvider('isolationLevelDataProvider')]
+    public function beginTransactionWithOptions(?IsolationLevel $isolationLevel): void
     {
         $this->connection->shouldReceive('isTransactionActive')->andReturn(false);
 
-        $opt = new TxOptions();
+        $opt = new TxOptions(
+            isolationLevel: $isolationLevel
+        );
 
-        $this->connection->shouldReceive('executeStatement')
-            ->ordered()
-            ->once()
-            ->with('SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value);
+        if (null !== $isolationLevel) {
+            $this->connection->shouldReceive('executeStatement')
+                ->ordered()
+                ->once()
+                ->with('SET TRANSACTION ISOLATION LEVEL ' . $isolationLevel->value);
+        }
 
         $this->connection->shouldReceive('beginTransaction')
             ->ordered()
