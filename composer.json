@@ -1,6 +1,7 @@
 {
     "name": "aeatech/transaction-manager-doctrine-adapter",
     "description": "Implementation of the transaction manager connection with Doctrine",
+    "keywords": ["transaction-manager", "transaction", "database", "MySQL", "PostgreSQL"],
     "license": "MIT",
     "type": "library",
     "config": {
@@ -38,11 +39,5 @@
             "/tests",
             "/phpunit.xml"
         ]
-    },
-    "keywords": [
-        "doctrine-dbal",
-        "database",
-        "transaction",
-        "sql"
-    ]
+    }
 }
