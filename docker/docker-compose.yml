@@ -39,3 +39,88 @@ services:
             - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
         extra_hosts:
             - 'host.docker.internal:host-gateway'
+    mysql-bench:
+        image: mysql:8.0.29
+        restart: on-failure
+        networks:
+            - network-mysql-bench
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: test
+            MYSQL_ROOT_HOST: '%'
+        command: >
+            --default-authentication-plugin=mysql_native_password
+            --max-connections=1000
+            --innodb-flush-log-at-trx-commit=0
+            --innodb-doublewrite=OFF
+            --innodb-autoinc-lock-mode=2
+            --skip-log-bin
+        tmpfs:
+            - /var/lib/mysql
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot"]
+            interval: 2s
+            timeout: 2s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-size: '10m'
+                max-file: '10'
+    pgsql-bench:
+        image: postgres:16
+        restart: on-failure
+        networks:
+            - network-pgsql-bench
+        environment:
+            POSTGRES_PASSWORD: test
+            POSTGRES_DB: test
+            POSTGRES_USER: test
+            POSTGRES_HOST_AUTH_METHOD: trust
+        command: >
+            -c max_connections=100
+            -c fsync=off
+            -c full_page_writes=off
+            -c synchronous_commit=off
+            -c shared_buffers=256MB
+            -c checkpoint_timeout=1h
+            -c autovacuum=off
+            -c jit=off
+        tmpfs:
+            - /var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "test", "-d", "test"]
+            interval: 2s
+            timeout: 2s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-size: '10m'
+                max-file: '10'
+    php-cli-bench:
+        build:
+            context: bench/
+            args:
+                OWNER_USER: ${USER}
+                OWNER_USER_ID: 1000
+        networks:
+            - network-mysql-bench
+            - network-pgsql-bench
+        environment:
+            MYSQL_HOST: mysql-bench
+            PGSQL_HOST: pgsql-bench
+        command: php -r "while (true) { sleep(86400); }"
+        working_dir: /app
+        volumes:
+            - ../../transaction-manager-doctrine-adapter:/app:rw
+            - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        depends_on:
+            - mysql-bench
+            - pgsql-bench
+
+networks:
+    network-mysql-bench:
+    network-pgsql-bench:

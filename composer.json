@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.6.10",
+        "phpbench/phpbench": "^1.4",
         "phpunit/phpunit": "^11.5",
         "roave/security-advisories": "dev-master"
     },
@@ -30,14 +31,17 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AEATech\\Test\\TransactionManager\\DoctrineAdapter\\": "tests/AEATech/Test/TransactionManager/DoctrineAdapter"
+            "AEATech\\Test\\TransactionManager\\DoctrineAdapter\\": "tests/AEATech/Test/TransactionManager/DoctrineAdapter",
+            "AEATech\\Benchmark\\TransactionManager\\DoctrineAdapter\\": "benchmarks/AEATech/Benchmark/TransactionManager/DoctrineAdapter"
         }
     },
     "archive": {
         "exclude": [
             "/docker",
             "/tests",
-            "/phpunit.xml"
+            "/phpunit.xml",
+            "/phpbench.json",
+            "/benchmarks"
         ]
     }
 }
