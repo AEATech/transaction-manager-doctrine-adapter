@@ -10,7 +10,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:Shahelm/transaction-manager-core.git"
+            "url": "git@github.com:AEATech/transaction-manager-core.git"
         }
     ],
     "require": {
