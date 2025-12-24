@@ -10,9 +10,6 @@ services:
         working_dir: /app
         volumes:
             - ../../transaction-manager-doctrine-adapter:/app:rw
-            - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
     php-cli-8.3:
         build:
             context: 8.3/
@@ -23,9 +20,6 @@ services:
         working_dir: /app
         volumes:
             - ../../transaction-manager-doctrine-adapter:/app:rw
-            - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
     php-cli-8.4:
         build:
             context: 8.4/
@@ -36,9 +30,6 @@ services:
         working_dir: /app
         volumes:
             - ../../transaction-manager-doctrine-adapter:/app:rw
-            - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
     mysql-bench:
         image: mysql:8.0.29
         restart: on-failure
@@ -114,9 +105,6 @@ services:
         working_dir: /app
         volumes:
             - ../../transaction-manager-doctrine-adapter:/app:rw
-            - /home/${USER}/.ssh:/home/${USER}/.ssh:ro
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
         depends_on:
             - mysql-bench
             - pgsql-bench
