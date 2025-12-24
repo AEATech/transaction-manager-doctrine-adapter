@@ -1,5 +1,7 @@
 # AEATech Transaction Manager — Doctrine Adapter
 
+![Code Coverage](.build/coverage_badge.svg)
+
 Doctrine DBAL adapter for AEATech Transaction Manager with best‑effort prepared‑statement reuse and explicit parameter binding compatible with both DBAL 3 and DBAL 4.
 
 ## Key Features
