@@ -49,7 +49,7 @@ class DbalPostgresStatementCachingConnectionAdapterTest extends StatementCaching
             $this->connection->shouldReceive('executeStatement')
                 ->ordered()
                 ->once()
-                ->with('SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value);
+                ->with('SET TRANSACTION ISOLATION LEVEL ' . $isolationLevel->value);
         }
 
         $this->connectionAdapter->beginTransactionWithOptions($opt);

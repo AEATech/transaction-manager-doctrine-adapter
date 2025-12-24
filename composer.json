@@ -1,7 +1,7 @@
 {
     "name": "aeatech/transaction-manager-doctrine-adapter",
     "description": "Implementation of the transaction manager connection with Doctrine",
-    "keywords": ["transaction-manager", "transaction", "database", "MySQL", "PostgreSQL"],
+    "keywords": ["aeatech", "transaction-manager", "transaction", "database", "MySQL", "PostgreSQL"],
     "license": "MIT",
     "type": "library",
     "config": {
@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": ">=8.2",
+        "ext-pdo": "*",
         "aeatech/transaction-manager-core": "dev-main",
         "doctrine/dbal": "^3.7 || ^4.0"
     },
@@ -22,6 +23,7 @@
         "mockery/mockery": "^1.6.10",
         "phpbench/phpbench": "^1.4",
         "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-mockery": "^2.0",
         "phpunit/phpunit": "^11.5",
         "roave/security-advisories": "dev-master"
     },

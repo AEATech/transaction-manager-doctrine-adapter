@@ -52,7 +52,7 @@ class BindingInfoResolverTest extends TestCase
      */
     #[Test]
     #[DataProvider('pdoParamIntsAreMappedDataProvider')]
-    public function pdoParamIntsAreMapped(mixed $value, mixed $type, $expected): void
+    public function pdoParamIntsAreMapped(mixed $value, mixed $type, mixed $expected): void
     {
         self::assertSame($expected, $this->resolver->resolve($this->connection, $value, $type)[1]);
     }
@@ -119,7 +119,7 @@ class BindingInfoResolverTest extends TestCase
             }
             public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): string
             {
-                return 'db:' . $value;
+                return 'db:' . $value; #@phpstan-ignore-line
             }
             // Do NOT override getBindingType() to keep compatibility with both DBAL 3.x and 4.x.
             // Base Type::getBindingType() returns STRING in both versions (int in 3.x, enum in 4.x).

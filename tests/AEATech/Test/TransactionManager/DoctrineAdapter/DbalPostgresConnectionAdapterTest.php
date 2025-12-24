@@ -41,7 +41,7 @@ class DbalPostgresConnectionAdapterTest extends ConnectionAdapterTestCase
             $this->connection->shouldReceive('executeStatement')
                 ->ordered()
                 ->once()
-                ->with('SET TRANSACTION ISOLATION LEVEL ' . $opt->isolationLevel->value);
+                ->with('SET TRANSACTION ISOLATION LEVEL ' . $isolationLevel->value);
         }
 
         $this->connectionAdapter->beginTransactionWithOptions($opt);

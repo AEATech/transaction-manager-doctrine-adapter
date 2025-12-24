@@ -111,7 +111,6 @@ class LruStatementCacheTest extends TestCase
 
         // Now k2 is head. Calling get('k2') triggers moveToFront(head),
         // which in the new implementation goes through removeNode(head)
-        // and addToFront(head) — покрывая ветку prev === null в removeNode().
         self::assertSame($s2, $cache->get('k2'));
 
         // State should remain logically the same: k2 stays head, k1 stays tail.
