@@ -10,13 +10,14 @@ permissions:
 
 jobs:
     tests:
-        name: Tests (PHP ${{ matrix.php }})
+        name: Tests (PHP ${{ matrix.php }}, ${{ matrix.dependencies }})
         runs-on: ubuntu-latest
 
         strategy:
             fail-fast: false
             matrix:
                 php: [ "8.2", "8.3", "8.4" ]
+                dependencies: [ "lowest", "highest" ]
 
         steps:
             - name: Checkout
@@ -27,36 +28,42 @@ jobs:
               with:
                   php-version: ${{ matrix.php }}
                   tools: composer:v2
-                  coverage: ${{ matrix.php == '8.2' && 'xdebug' || 'none' }}
+                  coverage: ${{ matrix.php == '8.2' && matrix.dependencies == 'highest' && 'xdebug' || 'none' }}
 
-            - name: Install dependencies
-              run: composer install --no-interaction --no-progress --prefer-dist
+            - name: Install lowest dependencies
+              if: matrix.dependencies == 'lowest'
+              run: composer update --no-interaction --no-progress --prefer-dist --prefer-lowest
+
+            - name: Install highest dependencies
+              if: matrix.dependencies == 'highest'
+              run: composer update --no-interaction --no-progress --prefer-dist
 
             - name: Run PHPStan
+              if: matrix.php == '8.2' && matrix.dependencies == 'highest'
               run: vendor/bin/phpstan analyze -c phpstan.neon --error-format=github --memory-limit=1G --no-progress
 
             - name: Run PHPUnit (no coverage)
-              if: matrix.php != '8.2'
+              if: matrix.php != '8.2' || matrix.dependencies != 'highest'
               run: |
                   vendor/bin/phpunit
 
-            - name: Run PHPUnit (with coverage on 8.2)
-              if: matrix.php == '8.2'
+            - name: Run PHPUnit (with coverage on 8.2 highest)
+              if: matrix.php == '8.2' && matrix.dependencies == 'highest'
               run: |
                   mkdir -p .build
                   vendor/bin/phpunit \
                     --coverage-clover .build/clover.xml
 
-            - name: Generate coverage badge (8.2)
-              if: matrix.php == '8.2'
+            - name: Generate coverage badge (8.2 highest)
+              if: matrix.php == '8.2' && matrix.dependencies == 'highest'
               uses: timkrase/phpunit-coverage-badge@v1.2.1
               with:
                   report: .build/clover.xml
                   coverage_badge_path: .build/coverage_badge.svg
                   push_badge: false
 
-            - name: Upload coverage artifacts (8.2)
-              if: matrix.php == '8.2'
+            - name: Upload coverage artifacts (8.2 highest)
+              if: matrix.php == '8.2' && matrix.dependencies == 'highest'
               uses: actions/upload-artifact@v4
               with:
                   name: coverage
@@ -64,7 +71,7 @@ jobs:
 
             # Commit badge/coverage ONLY to push to main (not to PR)
             - name: Commit coverage artifacts to repo (push main only)
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.php == '8.2'
+              if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.php == '8.2' && matrix.dependencies == 'highest'
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
