@@ -75,6 +75,9 @@ class LruStatementCache implements StatementCacheInterface
 
     private function evictLeastRecentlyUsed(): void
     {
+        /**
+         * @var LruNode $node
+         */
         $node = $this->tail;
 
         // It is assumed that this method is called only when

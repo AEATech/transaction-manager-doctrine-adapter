@@ -21,6 +21,7 @@
     "require-dev": {
         "mockery/mockery": "^1.6.10",
         "phpbench/phpbench": "^1.4",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5",
         "roave/security-advisories": "dev-master"
     },
@@ -41,7 +42,10 @@
             "/tests",
             "/phpunit.xml",
             "/phpbench.json",
-            "/benchmarks"
+            "/benchmarks",
+            "/phpstan.neon",
+            "/.build",
+            "/.github"
         ]
     }
 }
