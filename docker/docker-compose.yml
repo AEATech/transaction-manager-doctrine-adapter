@@ -59,7 +59,7 @@ services:
                 max-size: '10m'
                 max-file: '10'
     pgsql-bench:
-        image: postgres:16
+        image: postgres:16-bullseye
         restart: on-failure
         networks:
             - network-pgsql-bench
