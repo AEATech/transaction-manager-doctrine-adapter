@@ -7,16 +7,10 @@
     "config": {
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:AEATech/transaction-manager-core.git"
-        }
-    ],
     "require": {
         "php": ">=8.2",
         "ext-pdo": "*",
-        "aeatech/transaction-manager-core": "dev-main",
+        "aeatech/transaction-manager-core": "^1.0",
         "doctrine/dbal": "^3.7 || ^4.0"
     },
     "require-dev": {

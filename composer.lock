@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bf67ca9cbee05fb119d0a48fa5cf390",
+    "content-hash": "5eb42545994704f903942fedeaff3e39",
     "packages": [
         {
             "name": "aeatech/transaction-manager-core",
-            "version": "dev-main",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AEATech/transaction-manager-core.git",
-                "reference": "b64e7c3e3b6c0d3a53ac569253bbf44600c6d55c"
+                "reference": "9db61265115867af6a85cf55107197a33c836ba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AEATech/transaction-manager-core/zipball/b64e7c3e3b6c0d3a53ac569253bbf44600c6d55c",
-                "reference": "b64e7c3e3b6c0d3a53ac569253bbf44600c6d55c",
+                "url": "https://api.github.com/repos/AEATech/transaction-manager-core/zipball/9db61265115867af6a85cf55107197a33c836ba0",
+                "reference": "9db61265115867af6a85cf55107197a33c836ba0",
                 "shasum": ""
             },
             "require": {
@@ -27,44 +27,34 @@
             "require-dev": {
                 "mockery/mockery": "^1.6.10",
                 "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-mockery": "^2.0",
                 "phpunit/phpunit": "^11.5",
                 "roave/security-advisories": "dev-master"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "AEATech\\TransactionManager\\": "src/AEATech/TransactionManager"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "AEATech\\Test\\TransactionManager\\": "tests/AEATech/Test/TransactionManager"
-                }
-            },
-            "archive": {
-                "exclude": [
-                    "/docker",
-                    "/tests",
-                    "/phpunit.xml"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Transaction manager core",
             "keywords": [
-                "MySQL",
-                "PostgreSQL",
+                "aeatech",
                 "database",
+                "mysql",
+                "postgresql",
                 "transaction",
                 "transaction-manager"
             ],
             "support": {
-                "source": "https://github.com/AEATech/transaction-manager-core/tree/main",
-                "issues": "https://github.com/AEATech/transaction-manager-core/issues"
+                "issues": "https://github.com/AEATech/transaction-manager-core/issues",
+                "source": "https://github.com/AEATech/transaction-manager-core/tree/1.0.0"
             },
-            "time": "2025-12-24T13:02:30+00:00"
+            "time": "2025-12-24T22:56:57+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -4754,7 +4744,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "aeatech/transaction-manager-core": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
